@@ -8,8 +8,6 @@ from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------
-# Import and clean data
 
 df = pd.read_csv("bee_data.csv")
 
@@ -17,8 +15,6 @@ df = df.groupby(['State', 'ANSI', 'Affected by', 'Year', 'state_code'])[['Pct of
 df.reset_index(inplace=True)
 
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------
-# App Layout
 
 app.layout = html.Div(style={'backgroundColor': "#F7F7F7"},children = [
     html.H1("Map of Bee Colonies", style={'text-align': 'center'}),
@@ -53,8 +49,6 @@ app.layout = html.Div(style={'backgroundColor': "#F7F7F7"},children = [
     dcc.Graph(id='my_bee_map', figure={})
 ])
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------
-# Connect the Plotly graphs with Dash Components
 @app.callback(
     [Output(component_id='output_container', component_property='children'),
     Output(component_id='my_bee_map', component_property='figure')],
